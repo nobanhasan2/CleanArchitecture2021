@@ -9,10 +9,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.clean_architecture_2021.core.extension.appContext
 import com.example.clean_architecture_2021.core.extension.viewContainer
+import com.example.clean_architecture_2021.core.navigation.Navigator
 
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.toolbar.*
+import javax.inject.Inject
 
 /**
  * Base Fragment class with helper methods for handling views and back button events.
@@ -22,15 +24,8 @@ import kotlinx.android.synthetic.main.toolbar.*
 @AndroidEntryPoint
 abstract class BaseFragment : Fragment() {
 
-    abstract fun layoutId(): Int
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View =
-        inflater.inflate(layoutId(), container, false)
-
+    @Inject
+    lateinit var navigation: Navigator
     open fun onBackPressed() {}
 
     internal fun firstTimeCreated(savedInstanceState: Bundle?) = savedInstanceState == null

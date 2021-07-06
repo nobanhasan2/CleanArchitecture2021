@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.example.clean_architecture_2021.core.platform.BaseViewModel" />
+        <variable
+            name="navigator"
+            type="com.example.clean_architecture_2021.core.navigation.Navigator" />
+    </data>
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_50"
@@ -155,6 +169,7 @@
         style="@style/RippleStyleWhite"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:onClick="@{()->navigator.showHome()}"
         android:layout_alignParentBottom="true"
         android:background="@color/blue_600">
 
@@ -169,3 +184,4 @@
 
 
 </LinearLayout>
+</layout>
