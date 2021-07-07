@@ -15,7 +15,7 @@
  */
 @file:Suppress("NOTHING_TO_INLINE", "EXTENSION_SHADOWED_BY_MEMBER")
 
-package com.fernandocejas.sample.core.platform
+package com.example.clean_architecture_2021.core.platform
 
 import android.os.Parcel
 import android.os.Parcelable

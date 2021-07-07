@@ -8,7 +8,6 @@ import com.example.clean_architecture_2021.core.navigation.Navigator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-
 /**
  * Base Activity class with helper methods for handling fragment transactions and back button
  * events.
@@ -23,5 +22,9 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_layout)
     }
+    override fun onBackPressed() {
+        if (!navigation.navController.popBackStack()) { finish()
 
+        }else{ navigation.navController.popBackStack() }
+    }
 }

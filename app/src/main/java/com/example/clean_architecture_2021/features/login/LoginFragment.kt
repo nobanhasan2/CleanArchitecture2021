@@ -7,5 +7,4 @@ import com.example.clean_architecture_2021.databinding.FragmentLoginBinding
 
 class LoginFragment : BaseVMFragment<LoginViewModel,FragmentLoginBinding>() {
     override fun getViewBinding() = FragmentLoginBinding.inflate(layoutInflater)
-
 }

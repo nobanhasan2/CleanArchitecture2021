@@ -170,7 +170,6 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:onClick="@{()->navigator.showHome()}"
-        android:layout_alignParentBottom="true"
         android:background="@color/blue_600">
 
         <TextView

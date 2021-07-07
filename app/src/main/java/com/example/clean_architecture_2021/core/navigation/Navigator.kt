@@ -9,7 +9,8 @@ import javax.inject.Singleton
 
 @Singleton
 class  Navigator @Inject constructor(private val authenticator: Authenticator) {
-    private lateinit var navController : NavController
+
+    lateinit var navController : NavController
     fun init(navHostFragment:NavHostFragment){
         val inflater = navHostFragment.navController.navInflater
         val graph = inflater.inflate(R.navigation.nav_graph)
@@ -21,7 +22,6 @@ class  Navigator @Inject constructor(private val authenticator: Authenticator) {
         navController.graph = graph
 
     }
-    fun showHome(){
-        navController.navigate(R.id.homeFragment)
-    }
+    fun showHome(){ navController.navigate(R.id.action_signIn_to_Home) }
+    fun showSignUp(){ navController.navigate(R.id.homeFragment) }
 }
