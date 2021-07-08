@@ -9,7 +9,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.clean_architecture_2021.BR
 import java.lang.reflect.ParameterizedType
-
+/**
+ * BaseVMFragment for binding the viewModel and Data binding class
+ */
 abstract class BaseVMFragment <VM : ViewModel, B : ViewDataBinding> : BaseFragment(){
     lateinit var mViewModel: VM
     lateinit var mBinding: B

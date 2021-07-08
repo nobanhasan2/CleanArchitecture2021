@@ -8,12 +8,14 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class  Navigator @Inject constructor(private val authenticator: Authenticator) {
+class  Navigator  @Inject constructor(private val authenticator: Authenticator) {
 
     lateinit var navController : NavController
+
     fun init(navHostFragment:NavHostFragment){
         val inflater = navHostFragment.navController.navInflater
         val graph = inflater.inflate(R.navigation.nav_graph)
+
 
         if (authenticator.userLoggedIn()){ graph.startDestination = R.id.homeFragment
         }else { graph.startDestination = R.id.loginFragment }
@@ -22,6 +24,21 @@ class  Navigator @Inject constructor(private val authenticator: Authenticator) {
         navController.graph = graph
 
     }
-    fun showHome(){ navController.navigate(R.id.action_signIn_to_Home) }
+
+    /**
+     * This function is for authenticate the routing if the user is loged in
+     * Then go to the Destination otherwise it will redirect to Login
+     */
+    private fun authNavigate(navigateID: Int) {
+        if (authenticator.userLoggedIn()){ navController.navigate(navigateID) }
+
+        else{ navController.navigate(R.id.loginFragment) }
+    }
+
+    /**
+     * All Destination path method called from XML @see in the layout
+     */
+    fun showHome(){ authNavigate(R.id.action_signIn_to_Home) }
+
     fun showSignUp(){ navController.navigate(R.id.homeFragment) }
 }

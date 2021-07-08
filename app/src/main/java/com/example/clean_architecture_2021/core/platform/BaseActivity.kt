@@ -23,6 +23,9 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_layout)
     }
     override fun onBackPressed() {
+        /**
+         Navigation back stack handle from fragment stack
+         */
         if (!navigation.navController.popBackStack()) { finish()
 
         }else{ navigation.navController.popBackStack() }
