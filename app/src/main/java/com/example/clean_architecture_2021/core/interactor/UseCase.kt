@@ -15,7 +15,7 @@
  */
 package com.example.clean_architecture_2021.core.interactor
 
-import com.fernandocejas.sample.core.exception.Failure
+import com.example.clean_architecture_2021.core.exception.Failure
 import com.fernandocejas.sample.core.functional.Either
 import kotlinx.coroutines.*
 

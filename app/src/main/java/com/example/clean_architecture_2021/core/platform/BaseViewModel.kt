@@ -3,7 +3,7 @@ package com.example.clean_architecture_2021.core.platform
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.fernandocejas.sample.core.exception.Failure
+import com.example.clean_architecture_2021.core.exception.Failure
 
 /**
  * Base ViewModel class with default Failure handling.
