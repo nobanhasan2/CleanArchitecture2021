@@ -8,7 +8,7 @@
         <import type="android.view.View" />
         <variable
             name="viewModel"
-            type="com.example.clean_architecture_2021.core.platform.BaseViewModel" />
+            type="com.example.clean_architecture_2021.features.login.LoginViewModel" />
         <variable
             name="navigator"
             type="com.example.clean_architecture_2021.core.navigation.Navigator" />
@@ -85,6 +85,7 @@
                         android:textColor="@color/grey_40" />
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/enter_username_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-4dp"
@@ -111,6 +112,7 @@
                         android:textColor="@color/grey_40" />
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/enter_password_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-4dp"
@@ -169,7 +171,7 @@
         style="@style/RippleStyleWhite"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:onClick="@{()->navigator.showHome()}"
+        android:onClick="@{()->viewModel.login(enterUsernameInput.getText().toString(),enterPasswordInput.getText().toString())}"
         android:background="@color/blue_600">
 
         <TextView

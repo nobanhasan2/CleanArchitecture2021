@@ -1,7 +1,5 @@
 package com.example.clean_architecture_2021.features.login
 
-import com.example.clean_architecture_2021.model.User
-import retrofit2.Call
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Singleton

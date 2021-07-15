@@ -13,18 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.clean_architecture.core.di
+package com.example.clean_architecture_2021.core.di
 
 
+import com.example.clean_architecture_2021.features.login.LoginRepository
+import com.ihsanbal.logging.LoggingInterceptor
 import com.squareup.leakcanary.core.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.internal.platform.Platform
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.Executors
 import javax.inject.Singleton
 
 @Module
@@ -35,7 +39,7 @@ class ApplicationModule {
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://raw.githubusercontent.com/android10/Sample-Data/master/Android-CleanArchitecture-Kotlin/")
+            .baseUrl("http://phantom-srv.kaz.com.bd/CCDB.lb/")
             .client(createClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -43,15 +47,20 @@ class ApplicationModule {
 
     private fun createClient(): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-        if (BuildConfig.DEBUG) {
-            val loggingInterceptor =
-                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
-            okHttpClientBuilder.addInterceptor(loggingInterceptor)
-        }
+
+        okHttpClientBuilder.addInterceptor { chain -> chain.proceed(chain.request().newBuilder().build()) }
+        val loggingInterceptor = LoggingInterceptor.Builder()
+            .setLevel(com.ihsanbal.logging.Level.BASIC)
+            .log(Platform.INFO)
+            .request("Request")
+            .response("Response")
+            .build()
+        okHttpClientBuilder.addInterceptor(loggingInterceptor)
+
         return okHttpClientBuilder.build()
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideMoviesRepository(dataSource: MoviesRepository.Network): MoviesRepository = dataSource
+    @Provides
+    @Singleton
+    fun provideLoginRepository(dataSource: LoginRepository.Network): LoginRepository = dataSource
 }

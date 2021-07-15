@@ -63,6 +63,8 @@ dependencies {
     implementation(Libraries.navigationComponent)
     implementation(Libraries.navigationComponentUI)
     implementation(Libraries.rippleEffect)
+    implementation(Libraries.loggingInterceptor)
+
 
     //TODO: change this
     implementation ("androidx.fragment:fragment-ktx:1.2.5")

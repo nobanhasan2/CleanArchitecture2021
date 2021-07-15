@@ -19,7 +19,7 @@ interface LoginRepository {
             return when (networkHandler.isNetworkAvailable()) {
                 true -> request(
                         service.login(username,password),
-                        { it  },
+                        {it},
                         User()
                 )
                 false -> Either.Left(Failure.NetworkConnection)
