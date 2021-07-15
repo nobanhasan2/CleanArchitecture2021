@@ -1,7 +1,7 @@
 package com.example.clean_architecture_2021.core.api
 
 import com.example.clean_architecture_2021.core.exception.Failure
-import com.fernandocejas.sample.core.functional.Either
+import com.example.clean_architecture_2021.core.functional.Either
 import retrofit2.Call
 
 open class ApiRequest {

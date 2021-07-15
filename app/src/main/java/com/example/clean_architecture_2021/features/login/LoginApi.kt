@@ -1,6 +1,6 @@
 package com.example.clean_architecture_2021.features.login
 
-import com.example.clean_architecture_2021.model.User
+import com.example.clean_architecture_2021.model.UserResult
 import retrofit2.Call
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -12,5 +12,5 @@ interface LoginApi {
         const val KEY_PASSWORD = "password"
     }
     @POST(LOGIN)
-    fun login(@Query(KEY_USER_NAME) userName: String, @Query(KEY_PASSWORD) password: String): Call<User>
+    fun login(@Query(KEY_USER_NAME) userName: String, @Query(KEY_PASSWORD) password: String): Call<UserResult>
 }

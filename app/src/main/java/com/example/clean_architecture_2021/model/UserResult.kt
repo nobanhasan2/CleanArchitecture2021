@@ -2,7 +2,7 @@ package com.example.clean_architecture_2021.model
 
 import com.google.gson.annotations.SerializedName
 
-class User {
+class UserResult {
     @SerializedName("Id")
     var id = 0
 

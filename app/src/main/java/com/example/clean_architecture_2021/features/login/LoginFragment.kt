@@ -6,9 +6,9 @@ import com.example.clean_architecture_2021.core.auth.Authenticator
 import com.example.clean_architecture_2021.core.navigation.Navigator
 import com.example.clean_architecture_2021.core.platform.BaseVMFragment
 import com.example.clean_architecture_2021.databinding.FragmentLoginBinding
-import com.example.clean_architecture_2021.model.User
-import com.fernandocejas.sample.core.extension.failure
-import com.fernandocejas.sample.core.extension.observe
+import com.example.clean_architecture_2021.model.UserResult
+import com.example.clean_architecture_2021.core.extension.failure
+import com.example.clean_architecture_2021.core.extension.observe
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -25,13 +25,15 @@ class LoginFragment : BaseVMFragment<LoginViewModel,FragmentLoginBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         with(loginViewModel){
-            observe(user,::onLoginSuccess)
+            observe(userResult,::onLoginSuccess)
             failure(failure,::handleFailure)
         }
-        loginViewModel.login("resmaccdb.fo@gmail.com","123")
+        with(loginViewModel){
+            observe(loadingStatus,::showProgressLoader)
+        }
     }
 
-    private fun onLoginSuccess(user: User?) {
+    private fun onLoginSuccess(userResult: UserResult?) {
         authenticator.isLoggedIn = true
         navigator.showHome()
     }

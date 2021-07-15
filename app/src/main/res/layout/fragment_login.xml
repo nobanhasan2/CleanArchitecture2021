@@ -84,20 +84,29 @@
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                         android:textColor="@color/grey_40" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/enter_username_input"
+                    <com.google.android.material.textfield.TextInputLayout
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-4dp"
                         android:layout_marginRight="-4dp"
-                        android:inputType="text"
-                        android:maxLength="50"
-                        android:maxLines="1"
-                        android:singleLine="true"
+                        app:errorEnabled="true"
+                        app:error="@{viewModel.usernameValidator.error}"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:textColor="@color/blue_600"
                         android:textStyle="bold"
-                        android:theme="@style/EditText.Grey" />
+                        android:theme="@style/EditText.Grey" >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/enter_username_input"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:maxLength="50"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="@={viewModel.usernameLiveData}"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <View
                         android:layout_width="0dp"
@@ -111,20 +120,28 @@
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
                         android:textColor="@color/grey_40" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/enter_password_input"
+                    <com.google.android.material.textfield.TextInputLayout
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-4dp"
                         android:layout_marginRight="-4dp"
-                        android:inputType="textPassword"
-                        android:maxLength="50"
-                        android:maxLines="1"
-                        android:singleLine="true"
+                        app:errorEnabled="true"
+                        app:error="@{viewModel.passwordValidator.error}"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:textColor="@color/blue_600"
                         android:textStyle="bold"
-                        android:theme="@style/EditText.Grey" />
+                        android:theme="@style/EditText.Grey" >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/enter_password_input"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:maxLength="50"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="@={viewModel.passwordLiveData}"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <View
                         android:layout_width="0dp"
@@ -171,8 +188,9 @@
         style="@style/RippleStyleWhite"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:enabled="@{viewModel.isLoginFormValidMediator}"
         android:onClick="@{()->viewModel.login(enterUsernameInput.getText().toString(),enterPasswordInput.getText().toString())}"
-        android:background="@color/blue_600">
+        android:background="@{viewModel.isLoginFormValidMediator ? @color/blue_600 : @color/grey_600}">
 
         <TextView
             android:layout_width="wrap_content"
