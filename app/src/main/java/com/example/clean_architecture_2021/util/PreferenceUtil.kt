@@ -1,11 +1,9 @@
 package com.example.clean_architecture_2021.util
 
-import android.content.Context
-import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.text.TextUtils
 import javax.inject.Inject
-import javax.inject.Singleton
+
 
 class PreferenceUtil<T> {
     companion object{
