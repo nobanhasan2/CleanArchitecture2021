@@ -16,7 +16,12 @@
 package com.example.clean_architecture_2021.core.di
 
 
+import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
+import com.example.clean_architecture_2021.AndroidApplication
 import com.example.clean_architecture_2021.features.login.LoginRepository
+import com.example.clean_architecture_2021.util.PreferenceUtil
 import com.ihsanbal.logging.LoggingInterceptor
 import com.squareup.leakcanary.core.BuildConfig
 import dagger.Module
@@ -35,6 +40,12 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class ApplicationModule {
 
+    @Singleton
+    @Provides
+    fun provideContext(application: AndroidApplication): Context = application.applicationContext
+    @Singleton
+    @Provides
+    fun provideSharePref(context: Context): SharedPreferences = context.getSharedPreferences(PreferenceUtil.NON_BACKED_UP_NAME, Context.MODE_PRIVATE)
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {

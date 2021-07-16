@@ -1,21 +1,23 @@
 package com.example.clean_architecture_2021.util
 
+import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.text.TextUtils
-import com.example.clean_architecture_2021.AndroidApplication
+import javax.inject.Inject
+import javax.inject.Singleton
 
 class PreferenceUtil<T> {
-    private val backedUpPreferences: SharedPreferences? = AndroidApplication().applicationContext.getSharedPreferences(BACKED_UP_NAME, MODE_PRIVATE)
-    private val nonBackedUpPreferences: SharedPreferences? = AndroidApplication().applicationContext.getSharedPreferences(NON_BACKED_UP_NAME, MODE_PRIVATE)
+    companion object{
 
-    companion object {
-        private const val BACKED_UP_NAME = "com.example.clean_architecture_2021.BACKED_UP"
-        private const val NON_BACKED_UP_NAME = "com.example.clean_architecture_2021.NON_BACKED_UP"
+        const val NON_BACKED_UP_NAME = "com.example.clean_architecture_2021.NON_BACKED_UP"
     }
-    fun  set(key: String, value: T, toBackedUp: Boolean = true): Boolean {
-        val preferences = if (toBackedUp) backedUpPreferences else nonBackedUpPreferences
-        if (preferences != null && !TextUtils.isEmpty(key)) {
+
+    @Inject
+    lateinit var preferences: SharedPreferences
+
+    fun  set(key: String, value: T): Boolean {
+        if (!TextUtils.isEmpty(key)) {
             val editor = preferences.edit()
             when (value) {
                 is String -> editor.putString(key, value)
@@ -28,5 +30,21 @@ class PreferenceUtil<T> {
             return editor.commit()
         }
         return false
+    }
+     fun  get(key: String, defaultValue : T): T {
+        when(defaultValue) {
+            is Boolean -> return preferences.getBoolean(key, defaultValue as Boolean) as T
+            is Float -> return preferences.getFloat(key, defaultValue as Float) as T
+            is Int -> return preferences.getInt(key, defaultValue as Int) as T
+            is Long -> return preferences.getLong(key, defaultValue as Long) as T
+            is String -> return preferences.getString(key, defaultValue as String) as T
+            else -> {
+                if (defaultValue is Set<*>) {
+                    return preferences!!.getStringSet(key, defaultValue as Set<String>) as T
+                }
+            }
+        }
+
+        return defaultValue
     }
 }

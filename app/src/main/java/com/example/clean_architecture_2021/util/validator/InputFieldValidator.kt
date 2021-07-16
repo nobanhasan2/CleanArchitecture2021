@@ -3,6 +3,11 @@ package com.example.clean_architecture_2021.util.validator
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
+/**
+ * Live data Validator class for validate any kind of input String
+ * Observed by @ViewModel
+ */
+
 typealias Predicate = (value: String?) -> Boolean
 enum class FieldValidate{
     TEXT,
@@ -44,9 +49,6 @@ class Validator {
             }
         }
     }
-
-
-
 
 
 }
