@@ -1,6 +1,5 @@
 /**
- * Copyright (C) 2020 Fernando Cejas Open Source Project
- *
+
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fernandocejas.sample.core.extension
+package com.example.clean_architecture_2021.core.extension
 
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater

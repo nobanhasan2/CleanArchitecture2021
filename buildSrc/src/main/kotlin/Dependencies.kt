@@ -58,6 +58,7 @@ object Libraries {
         const val retrofit = "2.9.0"
         const val okHttpLoggingInterceptor = "4.9.0"
         const val rippleEffect = "1.0.2"
+        const val loggingInterceptor = "3.1.0"
     }
 
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Kotlin.standardLibrary}"
@@ -89,6 +90,7 @@ object Libraries {
     const val navigationComponentUI =
         "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     const val rippleEffect = "com.balysv:material-ripple:${Versions.rippleEffect}"
+    const val loggingInterceptor = "com.github.ihsanbal:LoggingInterceptor:${Versions.loggingInterceptor}"
 }
 
 object TestLibraries {

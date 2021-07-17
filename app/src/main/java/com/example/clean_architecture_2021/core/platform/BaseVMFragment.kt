@@ -22,7 +22,9 @@ abstract class BaseVMFragment <VM : ViewModel, B : ViewDataBinding> : BaseFragme
     ): View {
         mViewModel = ViewModelProvider(this).get(getViewModelClass())
         mBinding = getViewBinding()
+        mBinding.lifecycleOwner = this
         mBinding.setVariable(BR.navigator,navigation)
+        mBinding.setVariable(BR.viewModel,mViewModel)
         return mBinding.root
     }
     private fun getViewModelClass(): Class<VM> {
