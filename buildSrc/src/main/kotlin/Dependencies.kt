@@ -46,7 +46,7 @@ object Libraries {
         const val hilt = BuildPlugins.Versions.hilt
         const val appCompat = "1.2.0"
         const val constraintLayout = "2.0.2"
-        const val recyclerView = "1.1.0"
+        const val recyclerView = "1.2.1"
         const val cardView = "1.0.0"
         const val material = "1.1.0"
         const val lifecycle = "2.2.0"
